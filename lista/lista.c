@@ -70,11 +70,42 @@ void imprimir(struct lista* lista){
 	if(NOT lista)
 		lista = nova_lista();
 	else{
-		/*for(aux = lista->inicio; NOT aux; aux = aux->prox)
-			printf("%d ", aux->valor);*/
 		aux = lista->inicio; 
 		while(aux != NULL){
 			printf("%d ", aux->valor);
+			aux = aux->prox;
+		}
+	}
+}
+
+void inserir_ordenar(int valor, struct lista* lista){
+	struct info* aux;
+	if(NOT lista){
+		lista = nova_lista();
+	}else if(NOT lista->inicio){
+		lista->inicio = nova_info(valor);
+		lista->fim = lista->inicio;
+	}else{
+		aux = lista->inicio;
+		while(aux){
+			if(aux->valor > valor){
+				if(NOT aux->prev){
+					lista->inicio = nova_info(valor);
+					aux->prev = lista->inicio;
+					lista->inicio->prox = aux;
+				}else{
+					aux->prev->prox = nova_info(valor);
+					aux->prev->prox->prev = aux->prev;
+					aux->prev->prox->prox = aux;
+					aux->prev = aux->prev->prox;
+				}
+				return;
+			}else if(NOT aux->prox){
+				aux->prox = nova_info(valor);
+				lista->fim = aux->prox;
+				aux->prox->prev = aux;
+				return;
+			}
 			aux = aux->prox;
 		}
 	}

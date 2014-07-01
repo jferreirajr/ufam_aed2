@@ -1,6 +1,6 @@
 COMPILADOR=gcc
 PARAMETROS=-W -Wall -ansi -pedantic -g
-EXECUTAVEL=fila
+EXECUTAVEL=lista
 FONTES=$(wildcard *.c)
 OBJETOS=$(wildcard *.o)
 all:$(EXECUTAVEL)
@@ -9,7 +9,7 @@ $(EXECUTAVEL): $(FONTES)
 	$(COMPILADOR) -o $@ $^
 
 %.o: %.c
-	$(COMPILADOR) -O $@ -C $< $(PARAMETROS)
+	$(COMPILADOR) -o $@ -c $< $(PARAMETROS)
 
 .PHONY: clean mrproper
 clean:

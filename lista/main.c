@@ -13,10 +13,11 @@ int main(void){
 	do{
 		scanf("%d",&entrada);
 		if(entrada == -1){
-			inverter(lista);
+			/*inverter(lista);*/
 			imprimir(lista);
 			return EXIT_SUCCESS;
 		}
-		inserir(entrada, lista);
+		/*inserir(entrada, lista);*/
+		inserir_ordenar(entrada, lista);
 	}while(true);
 }
